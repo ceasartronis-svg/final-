@@ -6,14 +6,12 @@
 <style>
 body {
     background: radial-gradient(circle at center, #3b0000, #140000 80%);
-   font-family: "Times New Roman", Times, serif;
+    font-family: "Times New Roman", Times, serif;
     text-align: center;
     padding-top: 100px;
     transition: background 2s;
     overflow: hidden;
     color: #ffd6d6;
-}
-
 }
 
 h1 {
@@ -70,16 +68,6 @@ button {
         opacity: 0;
     }
 }
-
-/* Celebration glow */
-body.celebrate {
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 20px #ff4d6d; }
-    to { box-shadow: 0 0 60px #ff1a4d; }
-}
 </style>
 </head>
 
@@ -101,12 +89,11 @@ body.celebrate {
     I love you so much even though you are so maldita towards me, okay? 
     Kaya stop being so maldita sometimes because I will cry. 
     Welcome to our 3rd Valentines celebration and I hope you enjoy it Miss. Maldita.
-
+    <br><br>
     I love you so much through the ups and downs my love, 
     I know that I may not do it perfectly but I hope that 
     I do it more than enough for your heart to skip a beat. 
     Thank you for staying with me, I love you much.
-    
 </div>
 
 <script>
@@ -122,17 +109,15 @@ function yesClicked() {
         yesClickCount++;
 
         yesBtn.style.position = "absolute";
-        yesBtn.style.left = Math.random() * (window.innerWidth - yesBtn.offsetWidth) + "px";
-        yesBtn.style.top = Math.random() * (window.innerHeight - yesBtn.offsetHeight) + "px";
-
+        yesBtn.style.left = Math.random() * window.innerWidth + "px";
+        yesBtn.style.top = Math.random() * window.innerHeight + "px";
         yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
 
     } else {
 
+        // PLAY MUSIC (FROM YOUR FIRST WORKING CODE)
         let music = document.getElementById("bgMusic");
-        music.play().catch(error => {
-            console.log("Autoplay blocked:", error);
-        });
+        music.play();
 
         document.body.style.background =
             "radial-gradient(circle at center, #2b0000, #0d0000 80%)";
@@ -143,21 +128,15 @@ function yesClicked() {
         document.getElementById("yes").style.display = "none";
         document.getElementById("no").style.display = "none";
 
-        // Floating heart burst
-        for (let i = 0; i < 25; i++) {
+        // Floating heart burst (from first version logic)
+        for (let i = 0; i < 20; i++) {
             let heart = document.createElement("div");
             heart.innerHTML = "💖";
-            heart.classList.add("floating");
-
+            heart.style.position = "absolute";
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.fontSize = (20 + Math.random() * 30) + "px";
-            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
-
+            heart.style.top = Math.random() * window.innerHeight + "px";
+            heart.style.fontSize = "30px";
             document.body.appendChild(heart);
-
-            setTimeout(() => {
-                heart.remove();
-            }, 6000);
         }
     }
 }
@@ -165,20 +144,13 @@ function yesClicked() {
 function moveButton() {
 
     const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
 
     noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random() * (window.innerWidth - noBtn.offsetWidth) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - noBtn.offsetHeight) + "px";
-
-    // Make Yes slightly bigger each time No is avoided
-    let currentScale = yesBtn.style.transform.match(/scale\(([^)]+)\)/);
-    let scaleValue = currentScale ? parseFloat(currentScale[1]) : 1;
-    yesBtn.style.transform = "scale(" + (scaleValue + 0.1) + ")";
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
 }
 
-    
-// Continuous floating images
+// Continuous floating images (from your second version)
 function createFloatingImage() {
 
     let images = [
