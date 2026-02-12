@@ -185,7 +185,15 @@ function createFloatingImage() {
 
 setInterval(createFloatingImage, 500);
 
+// Auto-play music on first click (browser requirement)
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", function () {
+    music.play();
+}, { once: true });
+
 </script>
+
 
 </body>
 </html>
