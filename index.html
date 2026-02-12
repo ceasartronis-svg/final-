@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>For My Valentine ❤️</title>
+
+<style>
+body {
+    background-color: #ffe6f0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    transition: background 1s;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+button {
+    font-size: 20px;
+    padding: 15px 30px;
+    margin: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#yes {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#no {
+    background-color: grey;
+    color: white;
+}
+
+/* Hidden love message */
+#loveMessage {
+    display: none;
+    font-size: 30px;
+    margin-top: 40px;
+    color: #ff1a4d;
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="mainTitle">May I be your Valentine? 💖</h1>
+
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<button id="yes" onclick="yesClicked()">Yes ❤️</button>
+<button id="no" onclick="moveButton()">No 😢</button>
+
+<div id="loveMessage">
+    You make my world brighter every single day ❤️  
+    Happy Valentine’s Day my love 💕
+</div>
+
+<script>
+
+let yesClickCount = 0;
+
+function yesClicked() {
+
+    const yesBtn = document.getElementById("yes");
+
+    if (yesClickCount < 3) {
+
+        yesClickCount++;
+
+        yesBtn.style.position = "absolute";
+        yesBtn.style.left = Math.random() * window.innerWidth + "px";
+        yesBtn.style.top = Math.random() * window.innerHeight + "px";
+
+        yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
+
+    } else {
+
+        document.getElementById("bgMusic").play();
+
+        document.body.style.background =
+            "linear-gradient(45deg, #ff99cc, #ffe6f0, #ffb3d9)";
+
+        document.getElementById("mainTitle").innerText =
+            "YAY!!! ❤️";
+
+        document.getElementById("loveMessage").style.display = "block";
+
+        document.getElementById("yes").style.display = "none";
+        document.getElementById("no").style.display = "none";
+
+        for (let i = 0; i < 20; i++) {
+            let heart = document.createElement("div");
+            heart.innerHTML = "💖";
+            heart.style.position = "absolute";
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.top = Math.random() * window.innerHeight + "px";
+            heart.style.fontSize = "30px";
+            document.body.appendChild(heart);
+        }
+    }
+}
+
+
+  
+</script>
+
+</body>
+</html>
+
