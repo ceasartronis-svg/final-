@@ -6,10 +6,10 @@
 <style>
 body {
     background: radial-gradient(circle at center, #3b0000, #140000 80%);
-    font-family: Arial, sans-serif;
+   font-family: "Times New Roman", Times, serif;
     text-align: center;
     padding-top: 100px;
-    transition: background 1s;
+    transition: background 2s;
     overflow: hidden;
     color: #ffd6d6;
 }
@@ -121,22 +121,23 @@ function yesClicked() {
 
         yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
 
-    } else {
+ } else {
 
-        let music = document.getElementById("bgMusic");
-        music.play().catch(() => {});
+    let music = document.getElementById("bgMusic");
+    music.play();
 
-        document.body.style.background =
-            "linear-gradient(45deg, #ff99cc, #ffe6f0, #ffb3d9)";
+    document.body.style.background =
+        "radial-gradient(circle at center, #2b0000, #0d0000 80%)";
 
-        document.body.classList.add("celebrate");
+    document.getElementById("mainTitle").innerText =
+        "YAY!!! ❤️";
 
-        document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
+    document.getElementById("loveMessage").style.display = "block";
 
-        document.getElementById("loveMessage").style.display = "block";
+    document.getElementById("yes").style.display = "none";
+    document.getElementById("no").style.display = "none";
 
-        document.getElementById("yes").style.display = "none";
-        document.getElementById("no").style.display = "none";
+}
 
         // Floating heart burst
         for (let i = 0; i < 25; i++) {
