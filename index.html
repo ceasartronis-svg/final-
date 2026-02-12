@@ -49,12 +49,12 @@ button {
 
 <h1 id="mainTitle">May I be your Valentine? 💖</h1>
 
-<audio id="bgMusic" loop>
+<audio id="bgMusic" loop preload="auto">
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <button id="yes" onclick="yesClicked()">Yes ❤️</button>
-<button id="no" onclick="moveButton()">No 😢</button>
+<button id="no" onmouseover="moveButton()">No 😢</button>
 
 <div id="loveMessage">
     You make my world brighter every single day ❤️  
@@ -81,7 +81,8 @@ function yesClicked() {
 
     } else {
 
-        document.getElementById("bgMusic").play();
+let music = document.getElementById("bgMusic");
+music.play();
 
         document.body.style.background =
             "linear-gradient(45deg, #ff99cc, #ffe6f0, #ffb3d9)";
@@ -106,6 +107,15 @@ function yesClicked() {
     }
 }
 
+function moveButton() {
+
+    const noBtn = document.getElementById("no");
+
+    noBtn.style.position = "absolute";
+    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+
+}
 
   
 </script>
