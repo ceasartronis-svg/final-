@@ -5,16 +5,21 @@
 
 <style>
 body {
-    background-color: #ffe6f0;
+    background: radial-gradient(circle at center, #3b0000, #140000 80%);
     font-family: Arial, sans-serif;
     text-align: center;
     padding-top: 100px;
     transition: background 1s;
+    overflow: hidden;
+    color: #ffd6d6;
+}
+
 }
 
 h1 {
     font-size: 50px;
-    color: #8B0000; /* blood red */
+    color: #8B0000;
+    transition: 0.5s;
 }
 
 button {
@@ -24,6 +29,7 @@ button {
     border: none;
     border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 #yes {
@@ -36,17 +42,21 @@ button {
     color: white;
 }
 
-/* Hidden love message */
 #loveMessage {
     display: none;
-    font-size: 30px;
+    font-size: 28px;
     margin-top: 40px;
     color: #ff1a4d;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
 }
-    .floating {
+
+/* Floating animation */
+.floating {
     position: fixed;
     bottom: -100px;
-    animation: floatUp 6s linear infinite;
+    animation: floatUp linear forwards;
     pointer-events: none;
 }
 
@@ -61,6 +71,15 @@ button {
     }
 }
 
+/* Celebration glow */
+body.celebrate {
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { box-shadow: 0 0 20px #ff4d6d; }
+    to { box-shadow: 0 0 60px #ff1a4d; }
+}
 </style>
 </head>
 
@@ -76,7 +95,12 @@ button {
 <button id="no" onmouseover="moveButton()">No 😢</button>
 
 <div id="loveMessage">
-    Hello my love, did you know that this is my first time doing code? Yes, yes, yes, I know hun, I am impressive when I am inlove. Thank you for making me your Valentine. I love you so much even though you are so maldita towards me, okay? kaya stop being so maldita sometimes because I will cry. Welcome to our 3rd Valentines celebration and I hope you enjoy it Miss. Maldita.
+    Hello my love, did you know that this is my first time doing code? 
+    Yes, yes, yes, I know hun, I am impressive when I am in love. 
+    Thank you for making me your Valentine. 
+    I love you so much even though you are so maldita towards me, okay? 
+    Kaya stop being so maldita sometimes because I will cry. 
+    Welcome to our 3rd Valentines celebration and I hope you enjoy it Miss. Maldita. 💖
 </div>
 
 <script>
@@ -92,35 +116,43 @@ function yesClicked() {
         yesClickCount++;
 
         yesBtn.style.position = "absolute";
-        yesBtn.style.left = Math.random() * window.innerWidth + "px";
-        yesBtn.style.top = Math.random() * window.innerHeight + "px";
+        yesBtn.style.left = Math.random() * (window.innerWidth - yesBtn.offsetWidth) + "px";
+        yesBtn.style.top = Math.random() * (window.innerHeight - yesBtn.offsetHeight) + "px";
 
         yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
 
     } else {
 
-let music = document.getElementById("bgMusic");
-music.play();
+        let music = document.getElementById("bgMusic");
+        music.play().catch(() => {});
 
         document.body.style.background =
             "linear-gradient(45deg, #ff99cc, #ffe6f0, #ffb3d9)";
 
-        document.getElementById("mainTitle").innerText =
-            "YAY!!! ❤️";
+        document.body.classList.add("celebrate");
+
+        document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
 
         document.getElementById("loveMessage").style.display = "block";
 
         document.getElementById("yes").style.display = "none";
         document.getElementById("no").style.display = "none";
 
-        for (let i = 0; i < 20; i++) {
+        // Floating heart burst
+        for (let i = 0; i < 25; i++) {
             let heart = document.createElement("div");
             heart.innerHTML = "💖";
-            heart.style.position = "absolute";
+            heart.classList.add("floating");
+
             heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = Math.random() * window.innerHeight + "px";
-            heart.style.fontSize = "30px";
+            heart.style.fontSize = (20 + Math.random() * 30) + "px";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
             document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
         }
     }
 }
@@ -128,22 +160,39 @@ music.play();
 function moveButton() {
 
     const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
 
     noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+    noBtn.style.left = Math.random() * (window.innerWidth - noBtn.offsetWidth) + "px";
+    noBtn.style.top = Math.random() * (window.innerHeight - noBtn.offsetHeight) + "px";
 
+    // Make Yes slightly bigger each time No is avoided
+    let currentScale = yesBtn.style.transform.match(/scale\(([^)]+)\)/);
+    let scaleValue = currentScale ? parseFloat(currentScale[1]) : 1;
+    yesBtn.style.transform = "scale(" + (scaleValue + 0.1) + ")";
 }
 
-  function createFloatingImage() {
+// Continuous floating images
+function createFloatingImage() {
+
+    let images = [
+        "heart1.png",
+        "heart2.png",
+        "heart3.png",
+        "heart4.png",
+        "heart5.png",
+        "heart6.png",
+        "heart7.png",
+        "heart8.png"
+    ];
 
     let img = document.createElement("img");
 
-    img.src = "heart.png"; // <-- change to your image file name
+    img.src = images[Math.floor(Math.random() * images.length)];
     img.classList.add("floating");
 
     img.style.left = Math.random() * window.innerWidth + "px";
-    img.style.width = (20 + Math.random() * 30) + "px";
+    img.style.width = (60 + Math.random() * 80) + "px";
     img.style.animationDuration = (4 + Math.random() * 4) + "s";
 
     document.body.appendChild(img);
@@ -153,11 +202,9 @@ function moveButton() {
     }, 7000);
 }
 
-// Make them appear every 500ms
 setInterval(createFloatingImage, 500);
 
 </script>
 
 </body>
 </html>
-
