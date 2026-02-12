@@ -1,188 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>For My Valentine ❤️</title>
+    <title>For My Valentine ❤️</title>
 
-<style>
-body {
-    background: radial-gradient(circle at center, #3b0000, #140000 80%);
-    font-family: "Times New Roman", Times, serif;
-    text-align: center;
-    padding-top: 100px;
-    transition: background 2s;
-    overflow: hidden;
-    color: #ffd6d6;
-}
+    <style>
+        body {
+            background-color: #ffe6f0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 100px;
+            transition: background 1s;
+            overflow: hidden;
+        }
 
-h1 {
-    font-size: 50px;
-    color: #8B0000;
-    transition: 0.5s;
-}
+        h1 {
+            font-size: 50px;
+            color: #8B0000; /* blood red */
+        }
 
-button {
-    font-size: 20px;
-    padding: 15px 30px;
-    margin: 20px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
+            margin: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
 
-#yes {
-    background-color: #ff4d6d;
-    color: white;
-}
+        #yes {
+            background-color: #ff4d6d;
+            color: white;
+        }
 
-#no {
-    background-color: grey;
-    color: white;
-}
+        #no {
+            background-color: grey;
+            color: white;
+        }
 
-#loveMessage {
-    display: none;
-    font-size: 28px;
-    margin-top: 40px;
-    color: #ff1a4d;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
+        /* Hidden love message */
+        #loveMessage {
+            display: none;
+            font-size: 30px;
+            margin-top: 40px;
+            color: #ff1a4d;
+        }
 
-/* Floating animation */
-.floating {
-    position: fixed;
-    bottom: -100px;
-    animation: floatUp linear forwards;
-    pointer-events: none;
-}
+        .floating {
+            position: fixed;
+            bottom: -100px;
+            animation: floatUp 6s linear infinite;
+            pointer-events: none;
+        }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-110vh);
-        opacity: 0;
-    }
-}
-</style>
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1 id="mainTitle">May I be your Valentine? 💖</h1>
+    <h1 id="mainTitle">May I be your Valentine? 💖</h1>
 
-<audio id="bgMusic" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
+    <audio id="bgMusic" loop preload="auto">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
-<button id="yes" onclick="yesClicked()">Yes ❤️</button>
-<button id="no" onmouseover="moveButton()">No 😢</button>
+    <button id="yes" onclick="yesClicked()">Yes ❤️</button>
+    <button id="no" onmouseover="moveButton()">No 😢</button>
 
-<div id="loveMessage">
-    Hello my love, did you know that this is my first time doing code? 
-    Yes, yes, yes, I know hun, I am impressive when I am in love. 
-    Thank you for making me your Valentine. 
-    I love you so much even though you are so maldita towards me, okay? 
-    Kaya stop being so maldita sometimes because I will cry. 
-    Welcome to our 3rd Valentines celebration and I hope you enjoy it Miss. Maldita.
-    <br><br>
-    I love you so much through the ups and downs my love, 
-    I know that I may not do it perfectly but I hope that 
-    I do it more than enough for your heart to skip a beat. 
-    Thank you for staying with me, I love you much.
-</div>
+    <div id="loveMessage">
+        Hello my love, did you know that this is my first time doing code?
+        Yes, yes, yes, I know hun, I am impressive when I am in love.
+        Thank you for making me your Valentine.
+        I love you so much even though you are so maldita towards me, okay?
+        Kaya stop being so maldita sometimes because I will cry.
+        Welcome to our 3rd Valentines celebration and I hope you enjoy it Miss. Maldita.
+    </div>
 
-<script>
+    <script>
+        let yesClickCount = 0;
 
-let yesClickCount = 0;
+        function yesClicked() {
 
-function yesClicked() {
+            const yesBtn = document.getElementById("yes");
 
-    const yesBtn = document.getElementById("yes");
+            if (yesClickCount < 3) {
 
-    if (yesClickCount < 3) {
+                yesClickCount++;
 
-        yesClickCount++;
+                yesBtn.style.position = "absolute";
+                yesBtn.style.left = Math.random() * window.innerWidth + "px";
+                yesBtn.style.top = Math.random() * window.innerHeight + "px";
+                yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
 
-        yesBtn.style.position = "absolute";
-        yesBtn.style.left = Math.random() * window.innerWidth + "px";
-        yesBtn.style.top = Math.random() * window.innerHeight + "px";
-        yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
+            } else {
 
-    } else {
+                let music = document.getElementById("bgMusic");
+                music.play();
 
-        // PLAY MUSIC (FROM YOUR FIRST WORKING CODE)
-        let music = document.getElementById("bgMusic");
-        music.play();
+                document.body.style.background =
+                    "linear-gradient(45deg, #ff99cc, #ffe6f0, #ffb3d9)";
 
-        document.body.style.background =
-            "radial-gradient(circle at center, #2b0000, #0d0000 80%)";
+                document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
+                document.getElementById("loveMessage").style.display = "block";
 
-        document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
-        document.getElementById("loveMessage").style.display = "block";
+                document.getElementById("yes").style.display = "none";
+                document.getElementById("no").style.display = "none";
 
-        document.getElementById("yes").style.display = "none";
-        document.getElementById("no").style.display = "none";
-
-        // Floating heart burst (from first version logic)
-        for (let i = 0; i < 20; i++) {
-            let heart = document.createElement("div");
-            heart.innerHTML = "💖";
-            heart.style.position = "absolute";
-            heart.style.left = Math.random() * window.innerWidth + "px";
-            heart.style.top = Math.random() * window.innerHeight + "px";
-            heart.style.fontSize = "30px";
-            document.body.appendChild(heart);
+                for (let i = 0; i < 20; i++) {
+                    let heart = document.createElement("div");
+                    heart.innerHTML = "💖";
+                    heart.style.position = "absolute";
+                    heart.style.left = Math.random() * window.innerWidth + "px";
+                    heart.style.top = Math.random() * window.innerHeight + "px";
+                    heart.style.fontSize = "30px";
+                    document.body.appendChild(heart);
+                }
+            }
         }
-    }
-}
 
-function moveButton() {
+        function moveButton() {
 
-    const noBtn = document.getElementById("no");
+            const noBtn = document.getElementById("no");
 
-    noBtn.style.position = "absolute";
-    noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
-    noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
-}
+            noBtn.style.position = "absolute";
+            noBtn.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            noBtn.style.top = Math.random() * (window.innerHeight - 50) + "px";
+        }
 
-// Continuous floating images (from your second version)
-function createFloatingImage() {
+        function createFloatingImage() {
 
-    let images = [
-        "heart1.png",
-        "heart2.png",
-        "heart3.png",
-        "heart4.png",
-        "heart5.png",
-        "heart6.png",
-        "heart7.png",
-        "heart8.png"
-    ];
+            let images = [
+                "heart1.png",
+                "heart2.png",
+                "heart3.png",
+                "heart4.png",
+                "heart5.png",
+                "heart6.png",
+                "heart7.png",
+                "heart8.png"
+            ];
 
-    let img = document.createElement("img");
+            let img = document.createElement("img");
 
-    img.src = images[Math.floor(Math.random() * images.length)];
-    img.classList.add("floating");
+            img.src = images[Math.floor(Math.random() * images.length)];
+            img.classList.add("floating");
 
-    img.style.left = Math.random() * window.innerWidth + "px";
-    img.style.width = (60 + Math.random() * 80) + "px";
-    img.style.animationDuration = (4 + Math.random() * 4) + "s";
+            img.style.left = Math.random() * window.innerWidth + "px";
+            img.style.width = (60 + Math.random() * 80) + "px";
+            img.style.animationDuration = (4 + Math.random() * 4) + "s";
 
-    document.body.appendChild(img);
+            document.body.appendChild(img);
 
-    setTimeout(() => {
-        img.remove();
-    }, 7000);
-}
+            setTimeout(() => {
+                img.remove();
+            }, 7000);
+        }
 
-setInterval(createFloatingImage, 500);
-
-</script>
+        // Make them appear every 500ms
+        setInterval(createFloatingImage, 500);
+    </script>
 
 </body>
 </html>
