@@ -113,20 +113,23 @@ function yesClicked() {
         yesBtn.style.top = Math.random() * window.innerHeight + "px";
         yesBtn.style.transform = "scale(" + (1 + yesClickCount * 0.3) + ")";
 
-    } else {
+   } else {
 
-        // PLAY MUSIC (FROM YOUR FIRST WORKING CODE)
-        let music = document.getElementById("bgMusic");
-        music.play();
+    let music = document.getElementById("bgMusic");
+    music.currentTime = 0;
+    music.play().catch(function(error) {
+        console.log("Audio blocked:", error);
+    });
 
-        document.body.style.background =
-            "radial-gradient(circle at center, #2b0000, #0d0000 80%)";
+    document.body.style.background =
+        "radial-gradient(circle at center, #2b0000, #0d0000 80%)";
 
-        document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
-        document.getElementById("loveMessage").style.display = "block";
+    document.getElementById("mainTitle").innerText = "YAY!!! ❤️";
+    document.getElementById("loveMessage").style.display = "block";
 
-        document.getElementById("yes").style.display = "none";
-        document.getElementById("no").style.display = "none";
+    document.getElementById("yes").style.display = "none";
+    document.getElementById("no").style.display = "none";
+
 
         // Floating heart burst (from first version logic)
         for (let i = 0; i < 20; i++) {
